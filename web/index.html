@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myInfo</title>
+
+    <!-- Stylesheets -->
+
+    <link rel="icon" href="user.ico" type="image/ico">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Share+Tech+Mono'>
+
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <div id="main-container">
+        <header id="top-section">
+            <h2>myInfo</h2>
+        </header>
+
+        <nav id="nav-buttons"></nav>
+
+        <main id="middle-section">
+            <div id="inner-container">
+                <div id="inner-left">
+                    <div class="search">
+                        <input type="text" class="search-bar" placeholder="Search...">
+                        <button class="search-btn">Go</button>
+                        <div id="suggestions" class="suggestions"></div>
+                    </div>
+                    <div class="form">
+                        <div class="form-row">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" placeholder="Enter username" />
+                        </div>
+                    </div>
+                </div>
+                <div id="inner-right"></div>
+            </div>
+
+            <div id="bottom-section">
+                <p>Bottom Section (10%)</p>
+            </div>
+    </div>
+
+    </main>
+    <!-- Scripts  -->
+
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="eel.js"></script>
+    <script type='module' src="js/script.js"></script>
+</body>
+
+</html>

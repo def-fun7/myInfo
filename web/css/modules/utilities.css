@@ -1,0 +1,10 @@
+/* ===========================
+   Utility Classes
+   =========================== */
+.highlight {
+  background-color: white;
+  color: #000;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 2px 4px;
+}

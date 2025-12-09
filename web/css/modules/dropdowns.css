@@ -1,0 +1,43 @@
+/* ===========================
+   Subcategory Dropdowns
+   =========================== */
+.subcategory {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  color: white;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.expand-btn,
+.add-btn {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+.add-btn { margin-left: 5px; }
+
+.subcategory-dropdown {
+  display: none;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 4px 0 0 12px;
+}
+
+.dropdown-item {
+  padding: 6px 10px;
+  font-size: 11px;
+  color: #fff;
+  cursor: pointer;
+}
+.dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+.dropdown-item input[type="checkbox"] {
+  margin-right: 8px;
+}

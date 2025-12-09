@@ -1,0 +1,11 @@
+/* ===========================
+   Bottom Section
+   =========================== */
+#bottom-section {
+  grid-row: 4 / 5;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 5px;
+  border: 1px dashed black;
+}

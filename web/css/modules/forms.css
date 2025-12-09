@@ -1,0 +1,33 @@
+/* Form Row: Label + Input inline */
+.form{
+  position: absolute;
+}
+.form-row {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  top: 0;
+  left: 0;
+}
+
+/* Label styling */
+.form-row label {
+  width: auto; /* fixed width for alignment */
+  font-weight: 500;
+  color: #333;
+  margin-right: 10px; /* spacing between label and input */
+}
+
+/* Input styling */
+.form-row input {
+  flex: 1; /* input expands to fill remaining space */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.form-row input:focus {
+  border-color: #0078d7; /* highlight on focus */
+  outline: none;
+}

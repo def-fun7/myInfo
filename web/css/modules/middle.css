@@ -1,0 +1,36 @@
+/* ===========================
+   Middle Section
+   =========================== */
+#middle-section {
+  grid-row: 3 / 4;
+  padding: 0;
+}
+
+/* Inner Container Split */
+#inner-container {
+  display: grid;
+  grid-template-columns: 70% 30%; /* Left / Right */
+  height: 100%;
+  width: 100%;
+}
+
+/* Inner Left */
+#inner-left {
+  grid-column: 1 / 2;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
+  border: 1px dashed black;
+}
+
+/* Inner Right */
+#inner-right {
+  grid-column: 2 / 3;
+  background-color: black;
+  color: white;
+  border: 1px dashed white;
+  padding: 0;
+}

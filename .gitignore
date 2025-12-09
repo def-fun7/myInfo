@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+# dist/
+build/
+*.log
+
+# Virtual environment
+venv/
+.env/
+.venv/
+*.code-workspace
+*-lock.json
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Sphinx docs
+docs/_build/
+*.rst~
+
+# Node.js (if used for frontend tooling)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Eel specific
+web/__pycache__/
+web/*.log
+web/*.tmp
+
+# Compiled or temporary files
+*.bak
+*.tmp
+*.swp
+
+# Optional: ignore generated requirements
+# requirements.txt.bak
