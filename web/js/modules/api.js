@@ -12,3 +12,13 @@ export function fetchAllFields() {
     eel.get_all_fields()((rows) => resolve(rows));
   });
 }
+
+export function updateUserData(path, jsonString) {
+  eel.updateUserData(path, jsonString);
+}
+
+export function getUserData(path) {
+  return new Promise((resolve) => {
+    eel.getUserData(path)((userdataStr) => resolve(userdataStr));
+  });
+}

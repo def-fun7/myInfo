@@ -6,6 +6,8 @@
 import { getSelectedCategory } from "./nav.js";
 import { getNamesByCategory } from "./grouping.js";
 import { toSafeId } from "../utils/ids.js";
+import { getUserData } from "./api.js";
+import { path } from "../script.js";
 
 /**
  * Refresh form rows based on the selected category and checked items.
@@ -29,6 +31,7 @@ export function refreshFormRows(rows, checkedSafeIds) {
   });
 
   enableInputKeyNavigation();
+  updateFormInput(path)
 }
 
 /**
@@ -54,20 +57,19 @@ export function addFormRow(label) {
     id: safeId,
     name: safeId,
     placeholder: `Enter ${label}`,
-    title: `Enter ${label}`
+    title: `Enter ${label}`,
   });
 
   const $removeBtn = $("<button>", {
     type: "button",
     class: "remove-row-btn",
     text: "x",
-    title: "Remove this Row"
+    title: "Remove this Row",
   });
 
   $row.append($label, $input, $removeBtn);
   $("#form").append($row);
 }
-
 
 /**
  * Enable arrow-key navigation between form inputs.
@@ -88,6 +90,19 @@ export function enableInputKeyNavigation() {
       e.preventDefault();
       const prev = inputs[index - 1];
       if (prev) prev.focus();
+    }
+  });
+}
+
+export function updateFormInput(path) {
+  getUserData(path).then((userDataStr) => {
+    const userDataObj = JSON.parse(userDataStr);
+
+    const $formRows = $(".form-row");
+
+    for (const [key, value] of Object.entries(userDataObj)) {
+      const safeId = "#" + toSafeId(key);
+      $($formRows.find(safeId)).val(value)
     }
   });
 }

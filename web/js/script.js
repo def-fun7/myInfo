@@ -12,7 +12,13 @@ import { refreshFormRows } from "./modules/forms.js";
 
 import { getCheckedItems } from "./utils/dom.js";
 import { attachItemCheckListener } from "./ui/listeners.js";
-import { attachRowButtons, attachExpandButtons } from "./ui/listeners.js";
+import {
+  attachRowButtons,
+  attachExpandButtons,
+  attachSaveData,
+} from "./ui/listeners.js";
+
+export const path = "userData.json";
 
 /**
  * Refresh subcategories UI and update form rows accordingly.
@@ -34,7 +40,6 @@ $(function () {
     populateNav();
     refreshSubcategories(rows);
     refreshSearchSuggestions(rows);
-
     attachItemCheckListener((checkedIds) => {
       refreshFormRows(rows, checkedIds);
     });
@@ -49,5 +54,6 @@ $(function () {
       refreshSearchSuggestions(rows);
     });
     attachExpandButtons();
+    attachSaveData(path);
   });
 });

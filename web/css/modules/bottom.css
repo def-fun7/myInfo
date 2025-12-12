@@ -8,4 +8,16 @@
   text-align: center;
   padding: 5px;
   border: 1px dashed black;
+  align-items: center;
+  justify-items: center;
+}
+
+.save-button{
+  font-size: 24px;
+  align-self: center;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  margin-top: 9px;
+  cursor: pointer;
 }

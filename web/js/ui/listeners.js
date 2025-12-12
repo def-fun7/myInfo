@@ -1,6 +1,7 @@
 import { getCheckedItems } from "../utils/dom.js";
 import { toReadableLabel } from "../utils/ids.js";
 import { addFormRow, enableInputKeyNavigation } from "../modules/forms.js";
+import { saveData } from "../modules/save.js";
 
 /**
  * Listen for checkbox changes and notify callback.
@@ -62,6 +63,12 @@ export function attachExpandButtons() {
     $dropdown.toggle(!isOpen);
 
     $btn.text(isOpen ? "∨" : "∧");
-    $btn.title(isOpen ? "Expand" : "Collapse");
+    $btn.attr('title', isOpen ? "Expand" : "Collapse");
+  });
+}
+
+export function attachSaveData(path) {
+  $(document).on("click", "#save-button", () => {
+    saveData(path);
   });
 }

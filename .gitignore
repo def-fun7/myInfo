@@ -48,3 +48,5 @@ web/*.tmp
 
 # Optional: ignore generated requirements
 # requirements.txt.bak
+
+userData.json
