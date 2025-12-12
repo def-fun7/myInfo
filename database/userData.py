@@ -61,8 +61,6 @@ def updateUserData(new_data):
     else:
         print("No new or changed data found. File remains unchanged.")
 
-
-
 def getUserData():
     file_path = get_data_filepath()
     try:

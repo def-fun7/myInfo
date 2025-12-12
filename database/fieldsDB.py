@@ -10,6 +10,8 @@ delete, and query fields. Uses NumPy-style docstrings for clarity.
 import sqlite3
 from pathlib import Path
 import os
+import gspread
+
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 DB_NAME = os.path.join(os.path.dirname(__file__), "fields_database.db")
@@ -53,6 +55,8 @@ def init_db():
     conn.commit()
     conn.close()
     print("Database created successfully.")
+    dataFromSheets()
+    print('Data From Google Sheets added to the Database')
     
 def add_field(category, subcategory, name, datatype, rules, formats, sensitivity, multiplicity):
     """
@@ -210,6 +214,32 @@ def get_field_by_id(field_id):
     return row
 
 
+def dataFromSheets():
+    if Path('../credientials.json').exists() is True:
+        gc = gspread.service_account(filename='../credientials.json')
+
+        sheet_url = 'https://docs.google.com/spreadsheets/d/1K1De6CBlEXe-S3qB3ywr3TqQpyRtdJW_UV7eubHpCXw/edit?usp=sharing'
+        spreadsheet = gc.open_by_url(sheet_url)
+
+        # 3. Select a worksheet (e.g., the first tab)
+        worksheet = spreadsheet.sheet1 
+
+        # --- Reading Data ---
+        data_as_list = worksheet.get_all_records() # Reads all data into a list of dictionaries
+        
+    for item in data_as_list:
+        add_field(
+        category=item['Category'],
+        subcategory=item['Sub-Category'],
+        name=item['Name'],
+        datatype=item['Data-Type'],    # Uses the 'Data-Type' key from the dictionary
+        rules=item['Rules'],
+        formats=item['Format'],        # Uses the 'Format' key from the dictionary
+        sensitivity=item['Sensitivity'],
+        multiplicity=item['Multiplicity']
+    )
+
+
 # -------------------------------
 # Example usage
 # -------------------------------
@@ -217,4 +247,5 @@ if __name__ == "__main__":
     # Initialize schema if needed
     
     # Print all fields
-    print(get_all_fields())
+    # print(get_all_fields())
+    pass

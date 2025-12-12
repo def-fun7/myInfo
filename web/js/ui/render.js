@@ -1,7 +1,18 @@
 import { toSafeId } from "../utils/ids.js";
 import { checkDefaultChecks } from "../utils/dom.js";
+import { getUserData } from "../modules/api.js";
+import { addFormRow } from "../modules/forms.js";
+import { getNamesByCategory } from "../modules/grouping.js";
 
-const defaultChecks = ["Mother-Name", "Maiden-Name", "University-Name"];
+var defaultChecks = [
+  "Full-Name",
+  "Mother-Name",
+  "Father-Name",
+  "Cell-Phone",
+  "Telephone",
+  "University-Name",
+  "School-Name",
+];
 
 /**
  * Render grouped subcategories into the right panel.
@@ -39,6 +50,19 @@ export function renderSubcategories(groupedDict) {
 
     $nav.append($header, $dropdown);
   });
-
   checkDefaultChecks(defaultChecks);
+}
+
+export function updatedDefaultChecks(rows, selectedCategory) {
+  getUserData().then((userDataStr) => {
+    const userDataObj = JSON.parse(userDataStr);
+    const namesByCat = getNamesByCategory(rows, selectedCategory);
+    for (const key of Object.keys(userDataObj)) {
+      if (!defaultChecks.includes(toSafeId(key))) {
+        if (namesByCat.includes(key)) {
+          addFormRow(key);
+        }
+      }
+    }
+  });
 }

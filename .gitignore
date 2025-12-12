@@ -50,3 +50,4 @@ web/*.tmp
 # requirements.txt.bak
 
 userData.json
+credientials.json

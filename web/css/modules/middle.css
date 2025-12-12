@@ -35,7 +35,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 /* Inner Right */
@@ -45,4 +45,5 @@
   color: white;
   border: 1px dashed white;
   padding: 0;
+  overflow-y: auto;
 }

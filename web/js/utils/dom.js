@@ -3,7 +3,7 @@
  * @param {string[]} defaults
  */
 export function checkDefaultChecks(defaults) {
-  defaults.forEach((suffix) => {
+  defaults.forEach(function (suffix) {
     const $box = $(`#check-${suffix}`);
     if ($box.length) $box.prop("checked", true);
   });

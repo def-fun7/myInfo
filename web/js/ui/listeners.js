@@ -39,16 +39,6 @@ function incrementCounter(btn) {
   return current;
 }
 
-/**
- * Decrement button counter.
- * @param {HTMLElement} btn
- * @returns {number} new count
- */
-function decrementCounter(btn) {
-  const current = Math.max(0, Number(btn.dataset.count || 0) - 1);
-  btn.dataset.count = current;
-  return current;
-}
 
 /**
  * Handle expand/collapse of subcategory dropdowns.
@@ -70,5 +60,16 @@ export function attachExpandButtons() {
 export function attachSaveData() {
   $(document).on("click", "#save-button", () => {
     saveData();
+  });
+  $(document).on("keydown", (event) => {
+    // 1. Check for the Enter key press
+    const isEnter = event.key === "Enter";
+
+    // 2. Check for the Control key (Windows/Linux) or Command key (Mac)
+    const isControlOrCommand = event.ctrlKey || event.metaKey;
+    if (isControlOrCommand && isEnter) {
+      event.preventDefault();
+      $("#save-button").click();
+    }
   });
 }
