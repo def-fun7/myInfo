@@ -18,3 +18,16 @@ export function groupBySubcategory(rows, selectedCategory) {
     return acc;
   }, {});
 }
+
+/**
+ * Get a list of names filtered by selected category.
+ * @param {Array<Object>} rows - Array of row objects, each containing at least `category` and `name`.
+ * @param {string} selectedCategory - The category to filter rows by.
+ * @returns {Array<string>} A list of names belonging to the selected category.
+ */
+
+export function getNamesByCategory(rows, selectedCategory) {
+  return rows
+    .filter(row => row.category === selectedCategory)
+    .map(row => row.name);
+}

@@ -20,6 +20,14 @@
   padding: 2px 8px;
   border-radius: 3px;
 }
+.remove-row-btn{
+  background-color: transparent;
+  margin-left: 5px;
+  border: red 2px solid;
+  border-radius: 50%;
+  align-items: center;
+  color: red; 
+}
 .add-btn { margin-left: 5px; }
 
 .subcategory-dropdown {

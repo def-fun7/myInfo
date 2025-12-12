@@ -73,7 +73,7 @@ function attachSearchSuggestions($input, $suggestionsBox, dataList) {
     $input.val(item);
     $suggestionsBox.hide();
 
-    const safeId = `item-${item.replace(/\s+/g, "-")}`;
+    const safeId = `dropdown-${item.replace(/\s+/g, "-")}`;
     const $target = $("#" + safeId);
     if ($target.length) {
       $(".subcategory-dropdown").show();

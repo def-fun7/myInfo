@@ -1,6 +1,8 @@
 /* Form Row: Label + Input inline */
 .form{
-  position: absolute;
+  position: relative;
+  width: 90%;
+  height: 350px;
 }
 .form-row {
   display: flex;
@@ -16,7 +18,8 @@
   width: auto; /* fixed width for alignment */
   font-weight: 500;
   color: #333;
-  margin-right: 10px; /* spacing between label and input */
+  margin: 10px; /* spacing between label and input */
+  padding: 3px;
 }
 
 /* Input styling */
