@@ -7,7 +7,6 @@ import { getSelectedCategory } from "./nav.js";
 import { getNamesByCategory } from "./grouping.js";
 import { toSafeId } from "../utils/ids.js";
 import { getUserData } from "./api.js";
-import { path } from "../script.js";
 
 /**
  * Refresh form rows based on the selected category and checked items.
@@ -31,7 +30,7 @@ export function refreshFormRows(rows, checkedSafeIds) {
   });
 
   enableInputKeyNavigation();
-  updateFormInput(path)
+  updateFormInput();
 }
 
 /**
@@ -94,15 +93,15 @@ export function enableInputKeyNavigation() {
   });
 }
 
-export function updateFormInput(path) {
-  getUserData(path).then((userDataStr) => {
+export function updateFormInput() {
+  getUserData().then((userDataStr) => {
     const userDataObj = JSON.parse(userDataStr);
-
+    console.log(userDataObj);
     const $formRows = $(".form-row");
 
     for (const [key, value] of Object.entries(userDataObj)) {
       const safeId = "#" + toSafeId(key);
-      $($formRows.find(safeId)).val(value)
+      $($formRows.find(safeId)).val(value);
     }
   });
 }

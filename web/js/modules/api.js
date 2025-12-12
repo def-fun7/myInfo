@@ -13,12 +13,12 @@ export function fetchAllFields() {
   });
 }
 
-export function updateUserData(path, jsonString) {
-  eel.updateUserData(path, jsonString);
+export function updateUserData(jsonString) {
+  eel.updateUserData(jsonString);
 }
 
-export function getUserData(path) {
+export function getUserData() {
   return new Promise((resolve) => {
-    eel.getUserData(path)((userdataStr) => resolve(userdataStr));
+    eel.getUserData()((userdataStr) => resolve(userdataStr));
   });
 }

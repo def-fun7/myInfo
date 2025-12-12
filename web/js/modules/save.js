@@ -6,7 +6,7 @@
 import { toReadableLabel } from "../utils/ids.js";
 import { updateUserData } from "./api.js";
 
-export function saveData(path) {
+export function saveData() {
   var $formInput = $("#form").find("input");
 
   var dataDict = {};
@@ -20,6 +20,6 @@ export function saveData(path) {
     }
   });
     const jsonString = JSON.stringify(dataDict, null, 4);
-    updateUserData(path, jsonString);
+    updateUserData(jsonString);
   console.log(jsonString);
 }

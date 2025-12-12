@@ -18,7 +18,6 @@ import {
   attachSaveData,
 } from "./ui/listeners.js";
 
-export const path = "userData.json";
 
 /**
  * Refresh subcategories UI and update form rows accordingly.
@@ -54,6 +53,6 @@ $(function () {
       refreshSearchSuggestions(rows);
     });
     attachExpandButtons();
-    attachSaveData(path);
+    attachSaveData();
   });
 });

@@ -67,8 +67,8 @@ export function attachExpandButtons() {
   });
 }
 
-export function attachSaveData(path) {
+export function attachSaveData() {
   $(document).on("click", "#save-button", () => {
-    saveData(path);
+    saveData();
   });
 }
