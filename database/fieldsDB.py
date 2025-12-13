@@ -238,6 +238,8 @@ def dataFromSheets():
         sensitivity=item['Sensitivity'],
         multiplicity=item['Multiplicity']
     )
+    else:
+        print("You are not the author so you don't have access to the gspread method. Download the spreadsheet from here (https://docs.google.com/spreadsheets/d/1K1De6CBlEXe-S3qB3ywr3TqQpyRtdJW_UV7eubHpCXw/edit?gid=0#gid=0) and then use Functions to make a new database with fields.")
 
 
 # -------------------------------
