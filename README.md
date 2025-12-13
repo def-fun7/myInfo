@@ -16,8 +16,7 @@ The application itself works **completely offline** and does not use any APIs, c
 
 ### 📥 Install
 
-The executable file for Windows can be installed from here: [**Insert Link Here**]
-
+The executable file for Windows can be installed from here: [[**Download myInfo.exe **](https://github.com/def-fun7/myInfo/tree/main/dist)]
 ### 💻 Usage
 
 After installation, just open the app and start typing!
