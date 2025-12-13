@@ -4,7 +4,7 @@
  */
 
 import { toReadableLabel } from "../utils/ids.js";
-import { updateUserData } from "./api.js";
+import { handleSaveClick } from "../ui/listeners.js";
 
 export function saveData() {
   var $formInput = $("#form").find("input");
@@ -20,6 +20,6 @@ export function saveData() {
     }
   });
     const jsonString = JSON.stringify(dataDict, null, 4);
-    updateUserData(jsonString);
-  console.log(jsonString);
+  handleSaveClick(jsonString)
 }
+

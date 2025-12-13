@@ -17,6 +17,7 @@ The application itself works **completely offline** and does not use any APIs, c
 ### 📥 Install
 
 The executable file for Windows can be installed from here: [[**Download myInfo.exe **](https://github.com/def-fun7/myInfo/tree/main/dist)]
+
 ### 💻 Usage
 
 After installation, just open the app and start typing!
@@ -35,7 +36,17 @@ The default fields are (so far):
 
 You can add more fields by searching in the search bar or expanding the menu on the right side and checking the appropriate boxes.
 
-Once you are done, click the big black button at the bottom or press CTRL + ENTER to save.
+Once you are done, click the big black button at the bottom or press CTRL + ENTER to save Like:
+
+![A short animated demo of the MyInfo app filtering and copying data.](./assets/Starting_up.gif)
+
+For things like emails or phone numbers, you can do this:
+
+![A short animated demo of the MyInfo app filtering and copying data.](./assets/multiple_fields.gif)
+
+and the generated document page, which is saved on your desktop, can be used as:
+
+![A short animated demo of the MyInfo app filtering and copying data.](./assets/the_document_page.gif)
 
 ---
 
@@ -88,7 +99,6 @@ As you fill the form and save it, the app creates a new **JSON file** on your sy
 
 ## 🎯 Next Steps
 
-* ✅ Add the Functionality to create the HTML page.
 * 🔐 Encrypting the JSON file on the system.
 * 📚 Update the database and fill it more in the other three categories (Work, Finance, Social).
 * 🧪 Test, clean, and documentation.

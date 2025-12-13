@@ -10,7 +10,7 @@ import { renderSubcategories } from "./ui/render.js";
 import { refreshSearchSuggestions } from "./modules/search.js";
 import { refreshFormRows } from "./modules/forms.js";
 import { getCheckedItems } from "./utils/dom.js";
-import { attachItemCheckListener } from "./ui/listeners.js";
+import { attachItemCheckListener, attachDownloadBtn } from "./ui/listeners.js";
 import {
   attachRowButtons,
   attachExpandButtons,
@@ -53,5 +53,6 @@ $(function () {
     });
     attachExpandButtons();
     attachSaveData();
+    attachDownloadBtn();
   });
 });

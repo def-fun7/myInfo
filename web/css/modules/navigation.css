@@ -9,6 +9,10 @@
   margin: 0;
   padding: 1px;
   border: 1px dashed black;
+  display: flex;
+  align-content: space-between;
+  justify-content: center;
+
 }
 
 /* ===========================

@@ -10,7 +10,7 @@ delete, and query fields. Uses NumPy-style docstrings for clarity.
 import sqlite3
 from pathlib import Path
 import os
-import gspread
+# import gspread
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 

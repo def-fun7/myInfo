@@ -27,40 +27,67 @@ def get_data_filepath():
     
     return full_path
 
-def updateUserData(new_data):
+def updateUserData(new_data: str) -> dict:
     """
-    Reads existing data from a JSON file, merges new data, 
-    and writes back only if changes were made.
+    Reads existing user data, merges new data, and updates the file 
+    only if changes were made.
+
+    Parameters
+    ----------
+    new_data : str
+        A JSON string containing the new key-value pairs to merge into 
+        the existing user data.
+
+    Returns
+    -------
+    dict
+        A status dictionary containing 'status' ('success', 'error', or 'unchanged') 
+        and a descriptive 'message'.
     """
+    # NOTE: These paths/functions should be available in your Python script context
     file_path = get_data_filepath()
     
-    new_json_data = json.loads(new_data)
-    # --- 1. READ EXISTING DATA ---
-    
-    existing_data = json.loads(getUserData())
-    # --- 2. MODIFY (MERGE) DATA ---
-    
-    # We create a copy of the existing data to compare against later
-    original_data = existing_data.copy()
-    
-    # This is the standard way to merge one dictionary into another.
-    # New keys are added, and existing keys are overwritten.
-    
-    existing_data.update(new_json_data)
+    try:
+        # Load the new data string from the JavaScript side
+        new_json_data = json.loads(new_data)
+        
+        # --- 1. READ EXISTING DATA ---
+        # Assuming getUserData() returns the raw JSON string from the file
+        existing_data = json.loads(getUserData())
+        
+        # --- 2. MODIFY (MERGE) DATA ---
+        
+        # Create a deep copy of the original data to compare against later
+        original_data = existing_data.copy()
+        
+        # Merge the new data into the existing data dictionary
+        # This adds new keys and overwrites existing ones
+        existing_data.update(new_json_data)
 
-    
-    # --- 3. CHECK FOR CHANGE & WRITE ---
-    
-    # Only write back to the file if the data has actually changed
-    if existing_data != original_data:
-        print(f"Data changed. Writing updated data to '{file_path}'...")
-        with open(file_path, 'w') as f:
-            # json.dump() converts the Python dictionary back to a JSON string
-            json.dump(existing_data, f, indent=4)
-        print("Update complete.")
-    else:
-        print("No new or changed data found. File remains unchanged.")
+        # --- 3. CHECK FOR CHANGE & WRITE ---
+        
+        if existing_data != original_data:
+            # Data has changed; write back to the file
+            print(f"Data changed. Writing updated data to '{file_path}'...")
+            
+            with open(file_path, 'w', encoding='utf-8') as f:
+                # Use indent=4 for human-readable formatting
+                json.dump(existing_data, f, indent=4)
+            
+            print("Update complete.")
+            return {"status": "success", "message": "User data successfully updated and saved."}
+        else:
+            # No changes were found
+            print("No new or changed data found. File remains unchanged.")
+            return {"status": "unchanged", "message": "No changes detected. Data file was not modified."}
 
+    except json.JSONDecodeError:
+        return {"status": "error", "message": "Invalid JSON data received from frontend."}
+    except FileNotFoundError:
+        return {"status": "error", "message": f"Data file not found at {file_path}."}
+    except Exception as e:
+        return {"status": "error", "message": f"An unexpected error occurred during update: {e}"}
+    
 def getUserData():
     file_path = get_data_filepath()
     try:
@@ -76,3 +103,5 @@ def getUserData():
         existing_data = {}
         
     return json.dumps(existing_data)
+
+print(get_data_filepath())

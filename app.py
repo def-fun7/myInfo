@@ -2,6 +2,7 @@ import os
 import eel
 from database.fieldsDB import get_all_fields, init_db
 from database.userData import updateUserData, getUserData
+from database.myInfoUser import createMyInfoPage
 
 monitor = {
     "width": 750,
@@ -23,6 +24,7 @@ eel.init('web', allowed_extensions=['.js', '.html', '.css'])
 eel.expose(get_all_fields)
 eel.expose(getUserData)
 eel.expose(updateUserData)
+eel.expose(createMyInfoPage)
 
 #starting eel
 eel.start('index.html', mode='edge',port=8080, size=(monitor['width'], monitor['height']))

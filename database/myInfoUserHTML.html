@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myInfo</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>">
+    <style>
+        /* CSS for a clean, centered, and modern look */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Center horizontally */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            /* Limit width for readability */
+        }
+
+        /* Title Styling */
+        h1 {
+            text-align: center;
+            color: #1a73e8;
+            /* A nice blue color */
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* Search Bar Styling */
+        #search-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        #search-input {
+            width: 90%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: border-color 0.3s;
+        }
+
+        #search-input:focus {
+            border-color: #1a73e8;
+            outline: none;
+        }
+
+        /* List Item Styling */
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #555;
+            flex-grow: 1;
+            /* Allows label to take up space */
+        }
+
+        .info-value {
+            /* This is where the actual text goes that gets copied */
+            display: block;
+            /* Hide the raw value, only show the label */
+        }
+
+        /* Copy Button Styling */
+        .copy-btn {
+            background-color: transparent;
+            /* Green */
+            color: black;
+            border: none;
+            padding: 1px 1px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 21px;
+            margin-left: 15px;
+            cursor: pointer;
+            border: #333 2px solid;
+            border-radius: 5px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .copy-btn:hover {
+            background-color: #45a049;
+        }
+
+        .copy-btn:active {
+            transform: translateY(1px);
+        }
+
+        .copied {
+            background-color: #1a73e8;
+            /* Blue when copied */
+        }
+
+        /* Styling for the new menu structure */
+
+        .copy-actions {
+            position: relative;
+            /* Essential for positioning the menu */
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+        }
+
+        .menu-btn {
+            background-color: transparent;
+            /* A subtle accent color */
+            color: black;
+            border: none;
+            padding: 1px;
+            font-size: 21px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 5px;
+            border: black 2px solid;
+            align-items: center;
+        }
+
+        /* Menu Container Styling */
+        .format-menu {
+            display: none;
+            /* Hidden by default */
+            position: absolute;
+            top: 100%;
+            /* Position below the button */
+            right: 0;
+            z-index: 10;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            min-width: 150px;
+            margin-top: 5px;
+            /* Small gap */
+        }
+
+        .format-menu.active {
+            display: block;
+            /* Show when active */
+        }
+
+        .menu-option {
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            white-space: nowrap;
+            /* Prevent options from wrapping */
+        }
+
+        .menu-option:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📋 myInfo </h1>
+
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="Search for Name, Address, Email, etc..."
+                onkeyup="filterItems()">
+        </div>
+        <div id="info-list"></div>
+    </div>
+
+    <script>
+        // JavaScript for Copy and Search functionality
+
+        // 1. Copy Functionality
+        document.addEventListener('click', function (event) {
+            if (event.target.classList.contains('copy-btn')) {
+                const valueToCopy = event.target.getAttribute('data-value');
+
+                // Use the modern Clipboard API
+                navigator.clipboard.writeText(valueToCopy).then(function () {
+
+                    // Visual feedback on the button
+                    const button = event.target;
+                    const originalText = button.textContent;
+
+                    button.textContent = '✅';
+                    button.classList.add('copied');
+
+                    // Reset button after a short delay
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.classList.remove('copied');
+                    }, 1000);
+
+                }).catch(err => {
+                    console.error('Could not copy text: ', err);
+                    alert('Copy failed! Your browser might not support the Clipboard API.');
+                });
+            }
+        });
+
+
+        // 2. Search/Filter Functionality
+        function filterItems() {
+            const input = document.getElementById('search-input');
+            const filter = input.value.toUpperCase();
+            const list = document.getElementById('info-list');
+            const items = list.getElementsByClassName('info-item');
+
+            for (let i = 0; i < items.length; i++) {
+                // Check both the visible label text AND the data-search-terms attribute
+                const label = items[i].querySelector('.info-label').textContent;
+                const searchTerms = items[i].getAttribute('data-search-terms').toUpperCase();
+
+                if (label.toUpperCase().indexOf(filter) > -1 || searchTerms.indexOf(filter) > -1) {
+                    items[i].style.display = 'flex'; // Show
+                } else {
+                    items[i].style.display = 'none'; // Hide
+                }
+            }
+        }
+        // 1. Menu Toggle Functionality
+        function toggleMenu(button) {
+            // Find the format-menu sibling within the same copy-actions div
+            const menu = button.parentNode.querySelector('.format-menu');
+
+            // Hide all other menus first
+            document.querySelectorAll('.format-menu').forEach(m => {
+                if (m !== menu) {
+                    m.classList.remove('active');
+                }
+            });
+
+            // Toggle the current menu
+            menu.classList.toggle('active');
+        }
+
+        // Close menu if clicked outside
+        document.addEventListener('click', function (event) {
+            if (!event.target.closest('.copy-actions')) {
+                document.querySelectorAll('.format-menu').forEach(m => m.classList.remove('active'));
+            }
+        });
+
+        // 2. Formatting and Copy Logic
+        document.addEventListener('click', function (event) {
+            let valueToCopy = '';
+            let button = null;
+
+            // --- A: Standard Copy Button Click ---
+            if (event.target.classList.contains('copy-btn')) {
+                valueToCopy = event.target.getAttribute('data-value');
+                button = event.target;
+
+                // --- B: Menu Option Click ---
+            } else if (event.target.classList.contains('menu-option')) {
+                const format = event.target.getAttribute('data-format');
+                // Find the main copy button (and its data-value) which is up two levels
+                const mainButton = event.target.closest('.copy-actions').querySelector('.copy-btn');
+                valueToCopy = mainButton.getAttribute('data-value');
+                button = mainButton; // Use the main copy button for visual feedback
+
+                // Apply the chosen format
+                valueToCopy = formatValue(valueToCopy, format);
+
+                // Hide the menu after selection
+                event.target.closest('.format-menu').classList.remove('active');
+            }
+
+            if (valueToCopy) {
+                // Copy to clipboard
+                navigator.clipboard.writeText(valueToCopy).then(function () {
+
+                    // Visual feedback (only if we have a button element to update)
+                    if (button) {
+                        const originalText = button.textContent;
+                        button.textContent = '✅';
+                        button.classList.add('copied');
+
+                        // Reset button after a short delay
+                        setTimeout(() => {
+                            button.textContent = '📋'; // Assuming you use the clipboard icon
+                            button.classList.remove('copied');
+                        }, 1000);
+                    }
+
+                }).catch(err => {
+                    console.error('Could not copy text: ', err);
+                    alert('Copy failed!');
+                });
+            }
+        });
+
+
+        // Helper function to apply formatting
+        function formatValue(value, format) {
+            switch (format) {
+                case 'upper':
+                    return value.toUpperCase();
+                case 'lower':
+                    return value.toLowerCase();
+                case 'nospace':
+                    // Remove all whitespace
+                    return value.replace(/\s/g, '');
+                case 'nospecial':
+                    // Remove all characters that are NOT alphanumeric or whitespace
+                    // Then remove leading/trailing whitespace
+                    return value.replace(/[^a-zA-Z0-9\s]/g, '').trim();
+                default:
+                    return value; // No change
+            }
+        }
+    </script>
+</body>
+
+</html>
