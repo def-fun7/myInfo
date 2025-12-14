@@ -1,5 +1,26 @@
 # 🤖 myInfo App
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/def-fun7/myInfo)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-yellow)
+![jQuery](https://img.shields.io/badge/jQuery-3.6%2B-blue)
+![HTML](https://img.shields.io/badge/HTML-5-orange)
+![CSS](https://img.shields.io/badge/CSS-3-blueviolet)
+![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+## 📚 Table of Contents
+
+- [📜 Description](#-description)
+- [🚀 How to Install and Use](#-how-to-install-and-use)
+  - [📥 Install](#-install)
+  - [💻 Usage](#-usage)
+- [🏗️ Structure](#️-structure)
+  - [Database Schema](#database-schema)
+- [🎯 Next Steps](#-next-steps)
+
+---
+
 ## 📜 Description
 
 Have you ever been filling out a college application, an online form, or making a new account and found yourself typing or copy-pasting the same info over and over? Or maybe you've wondered:
@@ -16,7 +37,7 @@ The application itself works **completely offline** and does not use any APIs, c
 
 ### 📥 Install
 
-The executable file for Windows can be installed from here: [[**Download myInfo.exe **](https://github.com/def-fun7/myInfo/tree/main/dist)]
+The zipped executable file for Windows can be installed from here: [[**Release Page **](https://github.com/def-fun7/myInfo/releases)]
 
 ### 💻 Usage
 
@@ -105,6 +126,6 @@ As you fill the form and save it, the app creates a new **JSON file** on your sy
 
 ---
 
-## 🙋 About Me
+## License
 
-I am def\_fun!
+Licensed under the **MIT License**.
